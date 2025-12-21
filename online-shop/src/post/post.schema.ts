@@ -1,0 +1,24 @@
+
+import { EntitySchema } from 'typeorm';
+import { Post } from './post.entity.js';
+
+export const PostSchema = new EntitySchema<Post>({
+  name: 'Post',
+  target: Post,
+  columns: {
+    id: {
+      type: Number,
+      primary: true,
+      generated: true,
+    }, 
+    userId :{
+      type: String,
+    },
+     comment :{
+      type: String,
+    }
+  },
+  relations: {    
+  },
+  
+});
