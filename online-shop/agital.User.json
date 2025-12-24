@@ -1,0 +1,35 @@
+[{
+  "_id": {
+    "$oid": "694846b380ccbb4dc02c84bd"
+  },
+  "email": "alice@example.com",
+  "password": "P@ssw0rd!Alice"
+},
+{
+  "_id": {
+    "$oid": "694846b380ccbb4dc02c84be"
+  },
+  "email": "bob@example.com",
+  "password": "B0bSecure#123"
+},
+{
+  "_id": {
+    "$oid": "694846b380ccbb4dc02c84bf"
+  },
+  "email": "carol@example.com",
+  "password": "Car0l$afePwd"
+},
+{
+  "_id": {
+    "$oid": "694846b380ccbb4dc02c84c0"
+  },
+  "email": "dave@example.com",
+  "password": "Dav3_Str0ng!"
+},
+{
+  "_id": {
+    "$oid": "694846b380ccbb4dc02c84c1"
+  },
+  "email": "eve@example.com",
+  "password": "Ev3@MockPass"
+}]

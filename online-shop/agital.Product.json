@@ -1,0 +1,117 @@
+[{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa039"
+  },
+  "name": "Playstation",
+  "version": "2023.04",
+  "shortDescription": "A powerful operating system",
+  "longDescription": "Super-OS 2023.04 is designed to run on all modern PCs with excellent performance and compatibility.",
+  "inStock": true,
+  "posts": [
+    {
+      "id": null,
+      "productId": "693f508607f3dceda72aa039",
+      "userId": "694846b380ccbb4dc02c84bd",
+      "comment": "This is new comment"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa03a"
+  },
+  "name": "Super-OS",
+  "version": "2024.01",
+  "shortDescription": "Next generation OS",
+  "longDescription": "Super-OS 2024 introduces enhanced security, faster boot times, and improved hardware support.",
+  "inStock": true,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa03b"
+  },
+  "name": "Hyper-OS Lite",
+  "version": "1.0.0",
+  "shortDescription": "Lightweight operating system",
+  "longDescription": "Hyper-OS Lite is optimized for low-end devices while remaining stable and easy to use.",
+  "inStock": true,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa03c"
+  },
+  "name": "Hyper-OS-Pro",
+  "version": "2.3.1",
+  "shortDescription": "Professional-grade OS",
+  "longDescription": "Hyper-OS Pro provides enterprise-level security, reliability, and long-term support.",
+  "inStock": false,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa03d"
+  },
+  "name": "MegaSuite-Office",
+  "version": "2024",
+  "shortDescription": "Office productivity suite",
+  "longDescription": "MegaSuite Office includes tools for documents, spreadsheets, and presentations with cloud support.",
+  "inStock": true,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa03e"
+  },
+  "name": "DevCore-IDE",
+  "version": "6.0",
+  "shortDescription": "Modern development environment",
+  "longDescription": "DevCore IDE 6.0 offers AI-assisted coding, debugging tools, and multi-language support.",
+  "inStock": true,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa03f"
+  },
+  "name": "CloudSync",
+  "version": "4.0",
+  "shortDescription": "Cloud file synchronization",
+  "longDescription": "CloudSync enables secure storage and synchronization of files across all devices.",
+  "inStock": false,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa040"
+  },
+  "name": "SecureShield-Antivirus",
+  "version": "2024",
+  "shortDescription": "Advanced system protection",
+  "longDescription": "SecureShield Antivirus protects your system against malware, ransomware, and phishing attacks.",
+  "inStock": true,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa041"
+  },
+  "name": "MediaBox-Player",
+  "version": "3.0",
+  "shortDescription": "Universal media player",
+  "longDescription": "MediaBox Player supports all major audio and video formats with a modern interface.",
+  "inStock": true,
+  "posts": []
+},
+{
+  "_id": {
+    "$oid": "693f508607f3dceda72aa042"
+  },
+  "name": "AnalyticsPro",
+  "version": "1.5",
+  "shortDescription": "Business analytics tool",
+  "longDescription": "AnalyticsPro helps teams visualize data and generate actionable business insights.",
+  "inStock": true,
+  "posts": []
+}]
