@@ -1,7 +1,7 @@
 ## Frontend 
-- wird mit React & TypeScript im Ordner online-shop-front umgesetzt  
+-  /online-shop-front (React & TypeScript)
 run mit `npm run start`
 
 ## Backend
-- wird mit NestJs im Ordner online-shop umgesetzt 
+- /online-shop (NestJs) 
 - run mit `npm run start:dev`

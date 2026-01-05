@@ -1,7 +1,7 @@
 import axios from "axios"
 import { Product } from "../styles/interfaces"
 
-export async function getProductsByName(productName : string) : Promise<Product[]> {
+export async function getProductByName(productName : string) : Promise<Product[]> {
      try {
         const basicUrl = process.env.REACT_APP_URL
         console.log("productName",productName)

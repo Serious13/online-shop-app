@@ -91,6 +91,18 @@
   width: 100px;
   cursor: pointer;
 }
+.button-rate{
+  text-decoration: none;
+}
+.stars {
+  align-self: center;
+}
+.layout {
+  display: "grid";
+  justify-content: "center";
+  align-items: center;
+  text-align: "center";
+}
 .search-button:hover {
  
 }

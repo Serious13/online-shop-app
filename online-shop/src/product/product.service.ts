@@ -5,6 +5,7 @@ import { MongoRepository } from 'typeorm';
 import { Product } from './product.entity.js';
 import { Post } from '../post/post.entity.js';
 import { DataSource } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class ProductService {
@@ -13,7 +14,6 @@ export class ProductService {
     private productRepository: MongoRepository<Product>,
     @InjectRepository(Post)
     private postRepository: MongoRepository<Post>
-   
   ) {} 
 
   /*async onModuleInit() {
@@ -42,12 +42,14 @@ export class ProductService {
     }    
   }
 
-  async findOne(name: string): Promise<Product[]> {
+  async findProductByName(name: string): Promise<any> {
     try {
-       return this.productRepository.find({
-        where: {
-          name: { $eq: name }
-        }
+      console.log("RES", await this.productRepository.findBy({
+        name: name
+      })
+    )
+      return this.productRepository.find({
+        where: { name: name }
       })
     }
     catch(e) {
@@ -56,13 +58,29 @@ export class ProductService {
     }
   }
 
-  async addComment(productName : string, commentBody: string): Promise<any> {
+  async findProductById(id: string): Promise<Product | null> {
+    try {
+      console.log("RES", await this.productRepository.findOneBy({
+        _id: new ObjectId(id),
+      })
+    )
+      return this.productRepository.findOneBy({
+        _id: new ObjectId(id),
+      })
+    }
+    catch(e) {
+      console.log("e", e)
+      return e
+    }
+  }
+
+  async addComment(id : string, productName : string, commentBody: string, score: number): Promise<any> {
     try {
       //productId: string, userId: string, comment: string
-      const comment = new Post(productName, commentBody )
+      const comment = new Post(productName, commentBody, score)
       console.log("comment", comment)
       return this.productRepository.findOneAndUpdate(
-          { name : productName }, //"693f508607f3dceda72aa039"
+          { _id: new ObjectId(id) }, //"693f508607f3dceda72aa039"
           {
              $push: {
                 posts: comment,

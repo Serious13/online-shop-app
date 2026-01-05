@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { getProducts } from "../actions/getProducts"
 import { Product } from "../styles/interfaces"
-import { getProductsByName } from "../actions/getProductsbyName"
+import { getProductByName } from "../actions/getProductbyName"
 
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router";
 
@@ -28,27 +28,15 @@ export default function Products() {
         console.log("productName", productName)
         setProductName(productName)
     }
-    function handleSearch() {
-
-    }
-    function redirectAUth() {
-       
-        return (
-            <>
-                <Navigate to="/dashboard" replace></Navigate>
-                <Navigate to="/about" replace />
-               
-            </>
-        )
-    } 
+    
     return (
-        <>
+        <div style={{ textAlign: "center"  }}>
             <h1>List of products:</h1>
             <br/>
             <div className="search-bar">
                 <input type="text" placeholder="Search product..." className="search-input" onChange={(e) => setProductName(e.target.value)}/> 
                 <button className="search-button" onClick={async () => {
-                    let products = await getProductsByName(productName)
+                    let products = await getProductByName(productName)
                     setProducts([...[], ...products])
                 }}>Search</button>
             </div>
@@ -60,16 +48,11 @@ export default function Products() {
                             <span>{ product.name }</span><br/>
                             <span> { product.shortDescription }</span><br/>
                             <span>In Stock: { product.inStock ? "Availible" : "Not Availible" }</span><br/>
-                            { <Link to="/dashboard" state={product}>Product detail</Link> }
-                           
+                            { <Link to="/product" state={product}>Detail</Link> }                           
                         </>
                     }</li>
                 ) }
             </ul>          
-        </>
+        </div>
     )
 }
-/**
- *  <button className="button-detail" onClick={redirectAUth} 
-                            >HOHO</button>
- */
