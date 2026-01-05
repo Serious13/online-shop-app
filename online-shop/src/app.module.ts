@@ -11,7 +11,7 @@ import { PostModule } from './post/posts.module';
 import { DataSource } from "typeorm"
 import { ConfigModule } from '@nestjs/config';
 
-const host = process.env.HOST as string
+const host = process.env.HOST
 console.log("host", host)
 @Module({
   imports: [

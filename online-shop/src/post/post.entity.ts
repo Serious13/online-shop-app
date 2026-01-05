@@ -11,8 +11,12 @@ export class Post {
     @Column()
     comment: string
 
-    constructor(userId: string, comment: string) {        
+    @Column()
+    score: number
+
+    constructor(userId: string, comment: string, score: number) {        
         this.userId = userId
         this.comment = comment
+        this.score = score
     }
 }

@@ -3,7 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import Products from './components/Products';
 import ProductDetail from './components/ProductDetail';
+import Comments from './components/Comments';
 import { BrowserRouter, Routes, Route } from 'react-router';
+
 
 function App() {
   
@@ -11,10 +13,10 @@ function App() {
      <BrowserRouter>
       <Routes>
           <Route path="/" element={<Products />} />
-          <Route path="/dashboard" element={<ProductDetail/>} />
+          <Route path="/product" element={<ProductDetail/>} />
+          <Route path="/rate" element={<Comments/>} />
         </Routes>
      </BrowserRouter>
-      
   );
 }
 

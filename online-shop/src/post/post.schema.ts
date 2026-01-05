@@ -14,8 +14,11 @@ export const PostSchema = new EntitySchema<Post>({
     userId :{
       type: String,
     },
-     comment :{
+    comment :{
       type: String,
+    },
+    score :{
+      type: Number,
     }
   },
   relations: {    
