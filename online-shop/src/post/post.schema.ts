@@ -1,17 +1,17 @@
 
 import { EntitySchema } from 'typeorm';
-import { Post } from './post.entity.js';
+import { Comment } from './post.entity.js';
 
-export const PostSchema = new EntitySchema<Post>({
-  name: 'Post',
-  target: Post,
+export const PostSchema = new EntitySchema<Comment>({
+  name: 'Comment',
+  target: Comment,
   columns: {
     id: {
-      type: Number,
+      type: String,
       primary: true,
       generated: true,
     }, 
-    userId :{
+    userName :{
       type: String,
     },
     comment :{
@@ -20,8 +20,5 @@ export const PostSchema = new EntitySchema<Post>({
     score :{
       type: Number,
     }
-  },
-  relations: {    
-  },
-  
+  }
 });

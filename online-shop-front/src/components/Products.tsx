@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react"
 import { getProducts } from "../actions/getProducts"
-import { Product } from "../styles/interfaces"
+import { Product, topProduct } from "../styles/interfaces"
 import { getProductByName } from "../actions/getProductbyName"
 
 import { BrowserRouter, Routes, Route, Navigate, Link } from "react-router";
+import { getRating } from "../actions/getRating";
 
 
 export default function Products() {
@@ -11,18 +12,31 @@ export default function Products() {
     const [product, setProducts] = useState<Product[]>([])
     const [productName, setProductName] = useState('')  
     const [productId, setProductId] = useState('')
-
+    const [topProducts, setTopProducts] = useState<topProduct[]>([])
     useEffect(() => {
-        const fetchUsers = async () => {
+        const fetcProducts = async () => {
             try {
                 const res = await getProducts()
-                console.log("res", res)
+                const ids : string[] = res.map((product) => String(product.id))
+                let productRatings : topProduct[] = []
+                let productRatingsSorted : topProduct[]= []
+                let productsSliced : topProduct[]= []
+                console.log("res", res)               
+                console.log("ids", ids)                
+                for (let id of ids) {
+                    console.log("res[ids.indexOf(id)].name", res[ids.indexOf(id)].name)
+                    productRatings.push({"id" : id, "score": await getRating(id), "name": res[ids.indexOf(id)].name})
+                }
+                productRatingsSorted = productRatings.sort((a : any,b : any) => b.score - a.score)
+                productsSliced = productRatingsSorted.splice(0,10)
+                //console.log("productRatings", productRatingsSorted.splice(0,9))
+                setTopProducts([...[], ...productsSliced])    
                 setProducts([...product, ...res])
             } catch (error) {
                 console.error(error)
             }
         }
-        fetchUsers()   
+        fetcProducts()   
     }, [])
     function handlechange(productName : string) {
         console.log("productName", productName)
@@ -52,7 +66,17 @@ export default function Products() {
                         </>
                     }</li>
                 ) }
-            </ul>          
+            </ul>
+            <ul className={ "top-product-list" }>
+                { topProducts.map((product : topProduct) => 
+                    <li key={ product.id } className="card">{
+                        <>
+                            <span> Product-name: { product.name }</span><br/>
+                            <span> Rating: { product.score }</span><br/>
+                        </>
+                    }</li>
+                ) }    
+            </ul>       
         </div>
     )
 }

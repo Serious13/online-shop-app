@@ -6,3 +6,9 @@ export interface Product {
     longDescription: string;
     inStock: boolean;
 }
+
+export interface topProduct {
+    id: string | number;
+    name : string;
+    score : number;
+}

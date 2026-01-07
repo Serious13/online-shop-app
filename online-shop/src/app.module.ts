@@ -3,7 +3,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Product } from './product/product.entity';
-import { Post } from './post/post.entity';
+import { Comment } from './post/post.entity';
 import { ProductController } from './product/products.controller';
 import { ProductService } from './product/product.service';
 import { ProductModule } from './product/products.module';
@@ -20,7 +20,7 @@ console.log("host", host)
         type: 'mongodb',
         url: process.env.HOST,
         database: 'agital',
-        entities: [Product, Post],
+        entities: [Product, Comment],
         synchronize: true
       }), 
       ProductModule, 

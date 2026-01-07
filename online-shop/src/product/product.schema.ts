@@ -27,8 +27,5 @@ export const ProductSchema = new EntitySchema<Product>({
       type: Boolean,
       default: true,
     },
-  },
-  relations: {
-  },
-  
+  }
 });

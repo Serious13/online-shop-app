@@ -2,16 +2,44 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
-import { Post } from './post.entity.js';
+import { Comment } from './post.entity.js';
 import { DataSource } from 'typeorm';
+import { ObjectId } from 'mongodb';
 
 @Injectable()
 export class PostService {
   constructor(
-    @InjectRepository(Post)
-    private productRepository: MongoRepository<Post> //,private dataSource: DataSource
-  ) {} 
+    @InjectRepository(Comment)
+    private postRepository: MongoRepository<Comment>
+  ) {}
+  
+  async findAllPosts(): Promise<Comment[]> {
+    try {
+      console.log("Found following products:", this.postRepository.find())
+      return this.postRepository.find()
+    }
+    catch(e) {
+      console.log("e", e)
+      return e
+    }    
+  }
+  
+ /* async addComment(userName : string, commentBody: string, score: number): Promise<any> {
+        try {
+          //productId: string, userId: string, comment: string
+          const comment = new Comment(userName, commentBody, score)
+          console.log("comment", comment)
 
+          return this.postRepository.save(
+              comment 
+          )
+        }
+        catch(e) {
+          console.log("e", e)
+          return e
+        }
+      } 
+  */
  
 
   /*async findAll(): Promise<Post[]> {
@@ -39,13 +67,5 @@ export class PostService {
     }   
   }*/
 
-  async remove(id: number): Promise<void> {
-    try {
-       await this.productRepository.delete(id)
-    }
-    catch(e) {
-      console.log("e", e)
-      return e
-    }   
-  }
+  
 }

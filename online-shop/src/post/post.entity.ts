@@ -1,12 +1,13 @@
-import { Entity, ObjectId, ObjectIdColumn, Column } from "typeorm"
+import { Product } from "src/product/product.entity"
+import { Entity, ObjectId, ObjectIdColumn, PrimaryColumn, Column, PrimaryGeneratedColumn, ManyToOne } from "typeorm"
 
-@Entity('Post')
-export class Post {
+@Entity()
+export class Comment {
     @ObjectIdColumn()
-    id: ObjectId
+    id: string
 
     @Column()
-    userId: string
+    userName: string
 
     @Column()
     comment: string
@@ -14,8 +15,8 @@ export class Post {
     @Column()
     score: number
 
-    constructor(userId: string, comment: string, score: number) {        
-        this.userId = userId
+    constructor(userName: string, comment: string, score: number) {        
+        this.userName = userName
         this.comment = comment
         this.score = score
     }
