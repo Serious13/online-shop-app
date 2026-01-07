@@ -4,7 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { PostController } from './posts.controller.js';
 import { PostSchema } from './post.schema.js';
 import { PostService } from './post.service';
-import { Post } from './post.entity';
+import { Comment } from './post.entity';
 
 @Module({
   imports: [TypeOrmModule.forFeature([PostSchema])],

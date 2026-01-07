@@ -3,17 +3,17 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { MongoRepository } from 'typeorm';
 import { Product } from './product.entity.js';
-import { Post } from '../post/post.entity.js';
 import { DataSource } from 'typeorm';
 import { ObjectId } from 'mongodb';
+import { Comment } from '../post/post.entity.js';
 
 @Injectable()
 export class ProductService {
   constructor(
     @InjectRepository(Product)
     private productRepository: MongoRepository<Product>,
-    @InjectRepository(Post)
-    private postRepository: MongoRepository<Post>
+    //@InjectRepository(Post)
+    //private postRepository: MongoRepository<Post>
   ) {} 
 
   /*async onModuleInit() {
@@ -42,6 +42,16 @@ export class ProductService {
     }    
   }
 
+  async getRating(id : string) {
+     try {
+      console.log("Found following products:", this.productRepository.find())
+      return this.productRepository.find()
+    }
+    catch(e) {
+      console.log("e", e)
+      return e
+    }    
+  }
   async findProductByName(name: string): Promise<any> {
     try {
       console.log("RES", await this.productRepository.findBy({
@@ -61,12 +71,12 @@ export class ProductService {
   async findProductById(id: string): Promise<Product | null> {
     try {
       console.log("RES", await this.productRepository.findOneBy({
+          _id: new ObjectId(id),
+        })
+      )
+      return  this.productRepository.findOneBy({
         _id: new ObjectId(id),
-      })
-    )
-      return this.productRepository.findOneBy({
-        _id: new ObjectId(id),
-      })
+      })      
     }
     catch(e) {
       console.log("e", e)
@@ -75,22 +85,43 @@ export class ProductService {
   }
 
   async addComment(id : string, productName : string, commentBody: string, score: number): Promise<any> {
-    try {
-      //productId: string, userId: string, comment: string
-      const comment = new Post(productName, commentBody, score)
-      console.log("comment", comment)
+    try {  
+      const comment = new Comment(productName, commentBody, score)
+      console.log("comment", id, comment)
       return this.productRepository.findOneAndUpdate(
-          { _id: new ObjectId(id) }, //"693f508607f3dceda72aa039"
+          { _id: new ObjectId(id) }, 
           {
              $push: {
                 posts: comment,
               },
-            //$set: { "posts.$[element]" : comment },
+       
           },
           {
-            returnDocument: 'after', // return updated document
-          },
+            returnDocument: 'after', 
+          }
       )
+    }
+    catch(e) {
+      console.log("e", e)
+      return e
+    }
+  }
+
+  async getRatingByProductId(id: string) : Promise<number> {
+    try {
+      let rating : number = 0
+      let posts : Comment[] = []
+      let avgRating : number = 1
+      let product  = await this.findProductById(id)
+      posts = product ? product.posts : []
+      console.log("product", posts)
+      for (let comment of posts) {
+        rating += comment.score 
+      }
+      if (posts.length > 0) {
+        avgRating = rating / posts.length
+      }
+      return avgRating
     }
     catch(e) {
       console.log("e", e)

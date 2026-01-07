@@ -106,3 +106,7 @@
 .search-button:hover {
  
 }
+
+.top-product-list {
+   list-style: none;
+}

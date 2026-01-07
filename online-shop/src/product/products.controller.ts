@@ -12,26 +12,29 @@ export class ProductsController {
         return this.productService.findAll();
     }
     @Get(':name')
-    async find(@Param ('name') name : string): Promise<any> {
-        console.log("findAll STARTED")
+    async findProductByName(@Param ('name') name : string): Promise<any> {
+        console.log("findProductByName")
         return this.productService.findProductByName(name);
     }
-    
 } 
-//${basicUrl}/products/${productName}`
+
 @Controller('product') 
-export class ProductController {
-    //`${basicUrl}/product/${id}`
+export class ProductController {  
     constructor(private readonly productService: ProductService) {}
+    @Get('/rating')
+    async getRatingByProductId(@Query ('id') id : string): Promise<number> {
+        console.log("getRatingByProductId FUNCTION", id)
+        return this.productService.getRatingByProductId(id)  
+    }
     @Get(':id')
     async findProductById(@Param ('id') id : string): Promise<Product | null> {
         console.log("findProductById FUNCTION", id)
         return this.productService.findProductById(id)  
     }
-    @Post(':id')
-    async addComment(@Param ('id') id : string, @Body() body: any): Promise<Product[]> {
-        console.log("addComment FUNCTION", body)//, body.id, body.comment)
-        return this.productService.addComment(id, body.name, body.message, body.rating)
+   
+    @Post(':id') 
+    async addComment(@Param ('id') id : string, @Body() body: { name : string, message : string, rating : number}): Promise<Product> {
+        console.log("addComment FUNCTION", id, body)
+        return this.productService.addComment(id, body.name, body.message, body.rating);        
     }
-     //axios.post(`${basicUrl}/product/${id}`, comment , { headers : headers })
 }

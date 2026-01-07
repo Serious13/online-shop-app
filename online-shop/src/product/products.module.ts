@@ -8,7 +8,7 @@ import { PostSchema } from '../post/post.schema';
 import { ProductSchema } from './product.schema.js';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([ProductSchema]), TypeOrmModule.forFeature([PostSchema])],
+  imports: [TypeOrmModule.forFeature([ProductSchema])],
   providers: [ProductService],
   controllers: [ProductsController, ProductController],
   //exports: [TypeOrmModule]
